@@ -4,12 +4,45 @@ const figlet = require('figlet');
 const shell = require('shelljs');
 const fs = require('fs');
 const path = require('path');
-const { getCurDate } = require('./lib/index');
+const minimist = require('minimist');
+const { getCurDate } = require('./lib/helpers');
 
 const tmpDirectory =
 	'/Users/chriszachary/Dropbox (Personal)/Clients/502/modernassessor/_PROJECTS/Modern Assessor Videos/Who Are Appraisers/tmp';
 const maFolder =
 	'/Users/chriszachary/Dropbox (Personal)/Clients/502/modernassessor';
+
+module.exports = () => {
+	const args = minimist(process.argv.slice(2));
+	let cmd = args._[0] || 'help';
+
+	if (args.version || args.v) {
+		cmd = 'version';
+	}
+
+	if (args.help || args.h) {
+		cmd = 'help';
+	}
+
+	switch (cmd) {
+		case 'go':
+			require('./src/go')(args);
+			break;
+		case 'help':
+			require('./src/help')(args);
+			break;
+		case 'version':
+			require('./src/version')(args);
+			break;
+		case 'old':
+			require('./src/old')(args);
+		default:
+			console.error(
+				`"${cmd}" is not a valid command. Try ${chalk.bold('ma help')}`
+			);
+			break;
+	}
+};
 
 const init = () => {
 	console.log(
@@ -145,5 +178,3 @@ const run = async () => {
 	// show success message
 	success();
 };
-
-run();

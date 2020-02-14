@@ -3,17 +3,34 @@
 	"version": "1.0.0",
 	"description": "",
 	"main": "index.js",
+	"bin": {
+		"ma": "bin/ma"
+	},
 	"dependencies": {
+		"airtable": "^0.8.1",
 		"chalk": "^2.4.2",
+		"cli-table": "^0.3.1",
+		"console.table": "^0.10.0",
+		"dotenv": "^8.2.0",
 		"figlet": "^1.2.4",
 		"inquirer": "^7.0.0",
-		"shelljs": "^0.8.3"
+		"minimist": "^1.2.0",
+		"ora": "^4.0.3",
+		"shelljs": "^0.8.3",
+		"table": "^5.4.6"
 	},
-	"devDependencies": {},
+	"devDependencies": {
+		"jest": "^25.1.0"
+	},
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"start": "node index.js"
 	},
+	"keywords": [
+		"cli",
+		"iris",
+		"modern-assessor"
+	],
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/itstheonlychris/modernassessor.git"
